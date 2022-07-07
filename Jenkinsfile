@@ -20,24 +20,5 @@ pipeline {
                 }
             }
         }
-        stage('b') {
-            agent {
-                kubernetes {
-                    yaml:'''
-                    apiVersion: v1
-                    kind: Pod
-                    metadata:
-                        name: nginx
-                    spec:
-                        containers:
-                            - name: nginx
-                              image: nginx
-                    '''
-                }
-                steps {
-                    sh "hostname"
-                }
-            }
-        }
     }
 }

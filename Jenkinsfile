@@ -16,9 +16,7 @@ pipeline {
                     '''
                 }
                 steps {
-                    container('ubuntu') {
-                        sh "hostname"
-                    }
+                    sh "hostname"
                 }
             }
         }
@@ -37,9 +35,7 @@ pipeline {
                     '''
                 }
                 steps {
-                    container('nginx') {
-                        sh "hostname"
-                    }
+                    sh "hostname"
                 }
             }
         }

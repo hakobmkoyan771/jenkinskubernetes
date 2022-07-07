@@ -17,7 +17,6 @@ podTemplate(yaml:'''
             container('app') {
                 stage('create file') {
                     sh "touch ~/file"
-                }
             }
         }
     }

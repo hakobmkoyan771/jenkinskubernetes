@@ -1,6 +1,6 @@
 podTemplate(yaml:'''
     apiVersion: v1
-    kind: Job
+    kind: Pod
     metadata:
         name: app
         labels:
@@ -13,9 +13,11 @@ podTemplate(yaml:'''
                 - containerPort: 80
 ''') {
     node(POD_LABEL) {
-        container('app') {
-            stage('create file') {
-                sh "touch ~/file"
+        stage('create file')
+            container('app') {
+                stage('create file') {
+                    sh "touch ~/file"
+                }
             }
         }
     }

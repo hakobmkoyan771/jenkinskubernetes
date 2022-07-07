@@ -1,6 +1,6 @@
 podTemplate(yaml:'''
     apiVersion: v1
-    kind: Pod
+    kind: Job
     metadata:
         name: app
         labels:

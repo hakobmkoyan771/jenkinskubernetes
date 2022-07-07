@@ -1,46 +1,25 @@
-<<<<<<< HEAD
 pipeline {
+    agent none
     stages {
-        stage('a') {
+        stage('Run maven') {
             agent {
                 kubernetes {
                     yaml: '''
                     apiVersion: v1
                     kind: Pod
-                    metadata:
-                        name: ubuntu
                     spec:
                         containers:
-                            - name: ubuntu
-                              image: ubuntu:alpine
+                            - name: maven
+                              image: maven:3.8.1-jdk-8
+                              command:
+                              - sleep
+                              args:
+                              - 99d
                     '''
-                }
-                steps {
-                    container('ubuntu') {
-                        sh "hostname"
-                    }
                 }
             }
-        }
-        stage('b') {
-            agent {
-                kubernetes {
-                    yaml:'''
-                    apiVersion: v1
-                    kind: Pod
-                    metadata:
-                        name: nginx
-                    spec:
-                        containers:
-                            - name: nginx
-                              image: nginx
-                    '''
-                }
-                steps {
-                    container('nginx') {
-                        sh "hostname"
-                    }
-                }
+            steps {
+                sh 'mvn -B -ntp clean install'
             }
         }
     }

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 pipeline {
     stages {
         stage('a') {

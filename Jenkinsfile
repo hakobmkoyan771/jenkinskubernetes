@@ -4,7 +4,7 @@ pipeline {
         stage('Run maven') {
             agent {
                 kubernetes {
-                    yaml: '''
+                    yaml '''
                     apiVersion: v1
                     kind: Pod
                     spec:

@@ -1,21 +1,45 @@
-podTemplate(yaml:'''
-    apiVersion: v1
-    kind: Pod
-    metadata:
-        name: app
-        labels:
-            app: contact
-    spec:
-        containers:
-            - name: app-contact
-              image: hakobmkoyan771/contactpython:0.1.0
-              ports:
-                - containerPort: 80
-''') {
-    node(POD_LABEL) {
-        container('app') {
-            stage('create file') {
-                sh "touch ~/file"
+pipeline {
+    stages {
+        stage('a') {
+            agent {
+                kubernetes {
+                    yaml: '''
+                    apiVersion: v1
+                    kind: Pod
+                    metadata:
+                        name: ubuntu
+                    spec:
+                        containers:
+                            - name: ubuntu
+                              image: ubuntu:alpine
+                    '''
+                }
+                steps {
+                    container('ubuntu') {
+                        sh "hostname"
+                    }
+                }
+            }
+        }
+        stage('b') {
+            agent {
+                kubernetes {
+                    yaml:'''
+                    apiVersion: v1
+                    kind: Pod
+                    metadata:
+                        name: nginx
+                    spec:
+                        containers:
+                            - name: nginx
+                              image: nginx
+                    '''
+                }
+                steps {
+                    container('nginx') {
+                        sh "hostname"
+                    }
+                }
             }
         }
     }

@@ -30,7 +30,9 @@ pipeline {
                 }
             }
             steps {
-                sh '''/kaniko/executor --context `pwd` --destination hakobmkoyan771/app:0.0.0'''
+                sh '''
+                /kaniko/executor --context `pwd` --destination hakobmkoyan771/app:0.0.0
+                '''
             }
         }
     }

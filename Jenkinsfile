@@ -9,9 +9,11 @@ pipeline {
             spec:
                 containers:
                     - name: kaniko
-                      image: gcr.io/kaniko-project/executor
+                      image: gcr.io/kaniko-project/executor:debug
                       command:
-                      - ls
+                      - sleep
+                      args"
+                      - 9999
                       volumeMounts:
                         - name: docker-cred
                           mountPath: /kaniko/.docker
@@ -29,7 +31,7 @@ pipeline {
         stage('uxaki') {
             steps {
                 container('kaniko') {
-                    sh 'ls'
+                    sh 'ls /bin'
                 }
             }
         }

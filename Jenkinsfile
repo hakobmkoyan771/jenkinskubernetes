@@ -31,7 +31,8 @@ pipeline {
         stage('uxaki') {
             steps {
                 container('kaniko') {
-                    sh 'ls /bin'
+                    sh 'ls'
+                    sh 'ls /home'
                 }
             }
         }

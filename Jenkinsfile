@@ -5,11 +5,15 @@ pipeline {
             apiVersion: v1
             kind: Pod
             metadata:
-                name: app
+                name: kaniko
             spec:
                 containers:
                     - name: kaniko
                       image: gcr.io/kaniko-project/executor:debug
+                      command
+                      - sleep
+                      args
+                      - 9999999
                       volumeMounts:
                         - name: docker-cred
                           mountPath: /kaniko/.docker

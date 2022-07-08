@@ -11,9 +11,9 @@ pipeline {
                     - name: kaniko
                       image: gcr.io/kaniko-project/executor
                       command:
-                        - "sleep"
+                        - sleep
                       args:
-                        - "9999"
+                        - 9999999
                       volumeMounts:
                         - name: docker-cred
                           mountPath: /kaniko/.docker

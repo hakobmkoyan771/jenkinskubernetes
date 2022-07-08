@@ -31,8 +31,7 @@ pipeline {
         stage('uxaki') {
             steps {
                 container('kaniko') {
-                    sh 'ls'
-                    sh 'ls /home'
+                    sh """/kaniko/executor --context `pwd` --destination hakobmkoyan771/app:${env.BUILD_NUMBER} """
                 }
             }
         }

@@ -12,7 +12,7 @@ pipeline {
                       image: gcr.io/kaniko-project/executor:debug
                       command:
                       - sleep
-                      args"
+                      args:
                       - 9999
                       volumeMounts:
                         - name: docker-cred

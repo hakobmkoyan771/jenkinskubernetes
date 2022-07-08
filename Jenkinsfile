@@ -48,8 +48,8 @@ pipeline {
             }
             steps {
                 container(name: 'kaniko', shell: '/busybox/sh') {
-                    sh '''
-                        /kaniko/executor --context /tmp/git/git --destination hakobmkoyan771/app:0.1.0
+                    sh '''#!/busybox/sh
+                        /kaniko/executor --dockerfile=/tmp/git/Dockerfile --context=/tmp/git --destination=hakobmkoyan771/app:0.1.0
                     '''
                 }
             }

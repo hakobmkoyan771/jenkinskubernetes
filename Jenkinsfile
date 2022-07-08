@@ -9,9 +9,7 @@ pipeline {
                         - name: ubuntu
                           image: ubuntu
                           command:
-                          - sleep
-                          args:
-                          - 999999
+                          - ls
             '''
         }
     }

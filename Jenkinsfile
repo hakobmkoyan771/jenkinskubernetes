@@ -19,7 +19,7 @@ pipeline {
         stage('uxaki') {
             steps {
                 container('ubuntu') {
-                    sh 'sleep 999999'
+                    sh 'ls'
                 }
             }
         }

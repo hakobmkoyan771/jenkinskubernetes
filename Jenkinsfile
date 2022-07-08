@@ -8,7 +8,7 @@ pipeline {
                 name: app
             spec:
                 containers:
-                    - name: kaniko
+                    - name: ubuntu
                       image: ubuntu
                       command:
                         - "sleep"
@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage('Build docker image') {
             steps {
-                container(name: 'kaniko', shell: '/bin/bash') {
+                container(name: 'ubuntu') {
                     sh """
                         sleep 999999
                     """

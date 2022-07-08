@@ -31,7 +31,7 @@ pipeline {
         stage('Build docker image and push to repository') {
             steps {
                 container('kaniko') {
-                    sh """/kaniko/executor --context `pwd` --destination hakobmkoyan771/app+${env.BUILD_NUMBER}"""
+                    sh """/kaniko/executor --context `pwd` --destination hakobmkoyan771/app:+${env.BUILD_NUMBER}"""
                 }
             }
         }

@@ -30,7 +30,7 @@ pipeline {
     stages {
         stage('uxaki') {
             steps {
-                container('ubuntu') {
+                container('kaniko') {
                     sh 'ls'
                 }
             }

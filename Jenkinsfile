@@ -12,7 +12,9 @@ pipeline {
           - name: maven
             image: maven:alpine
             command:
-            - cat
+            - sleep
+            args:
+            - 999999
             tty: true
           - name: busybox
             image: busybox

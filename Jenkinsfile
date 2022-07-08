@@ -14,7 +14,7 @@ pipeline {
                                 - name: kaniko
                                   image: gcr.io/kaniko-project/executor:latest
                                   args: ["--dockerfile=/",
-                                         "--context=https://github.com/hakobmkoyan771/jenkinskubernetes.git",
+                                         "--context=git://github.com/hakobmkoyan771/jenkinskubernetes.git",
                                          "--destination=docker.io/hakobmkoyan771/app:0.1.0"]
                                   volumeMounts:
                                     - name: kaniko-secret

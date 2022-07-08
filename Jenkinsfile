@@ -9,36 +9,36 @@ pipeline {
             spec:
                 containers:
                     - name: kaniko
-                        image: gcr.io/kaniko-project/executor
-                        volumeMounts:
+                      image: gcr.io/kaniko-project/executor
+                      volumeMounts:
                         - name: docker-cred
-                            mountPath: /kaniko/.docker
+                          mountPath: /kaniko/.docker
                         - name: gitrepo
-                            mountPath: /tmp
+                          mountPath: /tmp
                 initContainers:
                     - name: alpine
-                        image: alpine
-                        command: ["mkdir", "/tmp/git"]
-                        volumeMounts:
+                      image: alpine
+                      command: ["mkdir", "/tmp/git"]
+                      volumeMounts:
                         - mountPath: /tmp
-                            name: gitrepo
+                          name: gitrepo
                     - name: git
-                        image: bitnami/git
-                        command: 
+                      image: bitnami/git
+                      command: 
                         - "git"
-                        args: ["clone", "https://github.com/hakobmkoyan771/jenkinskubernetes.git", "/tmp/git"]
-                        volumeMounts:
+                      args: ["clone", "https://github.com/hakobmkoyan771/jenkinskubernetes.git", "/tmp/git"]
+                      volumeMounts:
                         - mountPath: /tmp
-                            name: gitrepo
+                          name: gitrepo
                 volumes:
                     - name: gitrepo
-                        hostPath:
+                      hostPath:
                         path: /tmp
                     - name: docker-cred
-                        secret:
+                      secret:
                         secretName: dockercred
                         items:
-                            - key: .dockerconfigjson
+                          - key: .dockerconfigjson
                             path: config.json
                 '''
         }

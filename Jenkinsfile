@@ -22,7 +22,7 @@ pipeline {
             steps {
                 container(name: 'ubuntu') {
                     sh """
-                        sleep 999999
+                        cd /; find Dockerfile . | grep Dockerfile
                     """
                 }
             }

@@ -1,31 +1,37 @@
 pipeline {
-    agent   {
-        kubernetes {
-            yaml """
-            apiVersion: v1
-            kind: Pod
-            metadata:
-                name: app
-            spec:
-                containers:
-                    - name: ubuntu
-                      image: ubuntu
-                      command:
-                        - "sleep"
-                      args:
-                        - "999999"
-                """
-        }
+  agent {
+    kubernetes {
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          labels:
+            some-label: some-label-value
+        spec:
+          containers:
+          - name: maven
+            image: maven:alpine
+            command:
+            - cat
+            tty: true
+          - name: busybox
+            image: busybox
+            command:
+            - cat
+            tty: true
+        '''
     }
-    stages {
-        stage('Build docker image') {
-            steps {
-                container(name: 'ubuntu') {
-                    sh """
-                        cd /; find Dockerfile . | grep Dockerfile
-                    """
-                }
-            }
+  }
+  stages {
+    stage('Run maven') {
+      steps {
+        container('maven') {
+          sh 'mvn -version; sleep 999999'
         }
+        container('busybox') {
+          sh '/bin/busybox'
+        }
+      }
     }
+  }
 }

@@ -22,7 +22,7 @@ pipeline {
                 initContainers:
                     - name: alpine
                       image: alpine
-                      command: ["mkdir", "/tmp/git"]
+                      command: ["mkdir", "/tmp/git", "2>", "/dev/null"]
                       volumeMounts:
                         - mountPath: /tmp
                           name: gitrepo

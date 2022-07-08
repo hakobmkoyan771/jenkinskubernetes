@@ -10,10 +10,6 @@ pipeline {
                 containers:
                     - name: kaniko
                       image: gcr.io/kaniko-project/executor:debug
-                      command:
-                      - sleep
-                      args:
-                      - 9999
                       volumeMounts:
                         - name: docker-cred
                           mountPath: /kaniko/.docker
@@ -28,10 +24,10 @@ pipeline {
         }
     }
     stages {
-        stage('uxaki') {
+        stage('Build docker image and push to repository') {
             steps {
                 container('kaniko') {
-                    sh """/kaniko/executor --context `pwd` --destination hakobmkoyan771/app:${env.BUILD_NUMBER} """
+                    sh """/kaniko/executor --context `pwd` --destination hakobmkoyan771/app+${env.BUILD_NUMBER}"""
                 }
             }
         }

@@ -13,25 +13,24 @@ pipeline {
                             containers:
                                 - name: kaniko
                                   image: gcr.io/kaniko-project/executor:latest
-                                  args: ["--dockerfile=./",
-                                         "--context=git://github.com/hakobmkoyan771/jenkinskubernetes.git",
-                                         "--no-push]
+                                  args: ["--context=git://github.com/hakobmkoyan771/jenkinskubernetes",
+                                         "--destination=hakobmkoyan771/app:0.0.0]
                                   volumeMounts:
                                     - name: kaniko-secret
-                                      mountPath: /secret
-                                  env:
-                                    - name: GOOGLE_APPILICATION_CREDENTIALS
-                                      value: /secret/kaniko-secret.json
+                                      mountPath: /kaniko/.docker
                             restartPolicy: Never
                             volumes:
                               - name: kaniko-secret
                                 secret:
-                                  secretName: kaniko-secret
+                                  secretName: dockercred
+                                  items:
+                                    - key: .dockeconfigjson
+                                      path: config.json
                     '''
                 }
             }
             steps {
-                sh "sleep 1"
+                sh '''/kaniko/executor --context `pwd` --destination hakobmkoyan771/app:0.0.0'''
             }
         }
     }

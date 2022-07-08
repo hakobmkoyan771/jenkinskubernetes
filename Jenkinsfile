@@ -15,8 +15,6 @@ pipeline {
                       volumeMounts:
                         - name: docker-cred
                           mountPath: /kaniko/.docker
-                        - name: gitrepo
-                          mountPath: /tmp
                 volumes:
                     - name: docker-cred
                       secret:

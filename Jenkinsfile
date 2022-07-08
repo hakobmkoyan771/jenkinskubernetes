@@ -14,9 +14,6 @@ pipeline {
                         - "sleep"
                       args:
                         - "999999"
-                      volumeMounts:
-                        - name: docker-cred
-                          mountPath: /kaniko/.docker
                 """
         }
     }

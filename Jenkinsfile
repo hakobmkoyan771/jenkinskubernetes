@@ -15,7 +15,7 @@ pipeline {
                                   image: gcr.io/kaniko-project/executor:latest
                                   args: ["--dockerfile=./",
                                          "--context=git://github.com/hakobmkoyan771/jenkinskubernetes.git",
-                                         "--no-push]
+                                         "--no-push=true]
                                   volumeMounts:
                                     - name: kaniko-secret
                                       mountPath: /secret

@@ -10,6 +10,10 @@ pipeline {
                 containers:
                     - name: kaniko
                       image: gcr.io/kaniko-project/executor
+                      command:
+                        - "sleep"
+                      args:
+                        - "9999"
                       volumeMounts:
                         - name: docker-cred
                           mountPath: /kaniko/.docker

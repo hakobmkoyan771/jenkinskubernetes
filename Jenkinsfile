@@ -36,5 +36,28 @@ pipeline {
                 }
             }
         }
+        stage('Build Pod of previously created image') {
+            agent {
+                kubernetes {
+                    yaml """
+                        apiVersion: v1
+                        kind: Pod
+                        metadata: 
+                            name: app
+                        spec:
+                            containers:
+                                - name: app
+                                  image: hakobmkoyan771/app:_${env.BUILD_NUMBER}
+                                  ports:
+                                    containerPort: 80
+                    """
+                }
+            }
+            steps {
+                container('app') {
+                    sh "ls"   
+                }
+            }
+        }
     }
 }

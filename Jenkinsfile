@@ -48,6 +48,10 @@ pipeline {
                             containers:
                                 - name: app
                                   image: hakobmkoyan771/app:_${env.BUILD_NUMBER}
+                                  command:
+                                    - sleep
+                                  args:
+                                    - 99999
                                   ports:
                                     - containerPort: 80
                     """

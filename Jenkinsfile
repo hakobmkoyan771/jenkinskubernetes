@@ -48,10 +48,6 @@ pipeline {
                             containers:
                                 - name: app
                                   image: hakobmkoyan771/app:_${env.BUILD_NUMBER}
-                                  command:
-                                    - sleep
-                                  args:
-                                    - 99999
                                   ports:
                                     - containerPort: 80
                     """
@@ -59,7 +55,7 @@ pipeline {
             }
             steps {
                 container('app') {
-                    sh "ls"   
+                    sh "sleep 999999"
                 }
             }
         }

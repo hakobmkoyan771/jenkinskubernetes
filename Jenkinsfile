@@ -49,7 +49,7 @@ pipeline {
                                 - name: app
                                   image: hakobmkoyan771/app:_${env.BUILD_NUMBER}
                                   ports:
-                                    containerPort: 80
+                                    - containerPort: 80
                     """
                 }
             }

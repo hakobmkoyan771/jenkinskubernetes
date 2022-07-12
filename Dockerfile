@@ -14,7 +14,7 @@ RUN apt-get -y install python3-pip
 
 RUN pip3 install -r /project/requirements.txt
 
-RUN apt -y install curl
+RUN apt install curl -y
 
 ENTRYPOINT ["python3"]
 

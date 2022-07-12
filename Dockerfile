@@ -19,3 +19,4 @@ RUN apt -y install curl
 ENTRYPOINT ["python3"]
 
 CMD ["/project/main.py"]
+
